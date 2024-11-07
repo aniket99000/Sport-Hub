@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket - Global Sports Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --primary-color: #1a5f7a;
+                --secondary-color: #57c5b6;
+                --accent-color: #159895;
+                --background-color: #f9f9f9;
+                --text-color: #333;
+                --light-text-color: #666;
+                --white: #ffffff;
+                --transition: all 0.3s ease;
+            }
+    
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+    
+            body {
+                font-family: 'Roboto', sans-serif;
+                line-height: 1.6;
+                color: var(--text-color);
+                background-color: var(--background-color);
+            }
+    
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+    
+            header {
+                background-color: var(--primary-color);
+                color: var(--white);
+                padding: 1rem 0;
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+    
+            .logo {
+                display: flex;
+                align-items: center;
+            }
+    
+            .logo img {
+                margin-right: 10px;
+                width: 50px;
+                height: 50px;
+            }
+    
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+    
+            nav ul {
+                list-style-type: none;
+                display: flex;
+                justify-content: flex-end;
+            }
+    
+            nav ul li {
+                margin-left: 20px;
+            }
+    
+            nav ul li a {
+                color: var(--white);
+                text-decoration: none;
+                font-weight: 500;
+                transition: var(--transition);
+            }
+    
+            nav ul li a:hover,
+            nav ul li a.active {
+                color: var(--secondary-color);
+            }
+    
+            .hero {
+                background-image: url('https://media.istockphoto.com/id/177427917/photo/close-up-of-red-cricket-ball-and-bat-sitting-on-grass.jpg?s=612x612&w=0&k=20&c=DcorerbBUeDNTfld3OclgHxCty4jih2yDCzipffX6zw=');
+                background-size: cover;
+                background-position: center;
+                color: var(--white);
+                text-align: center;
+                padding: 6rem 0;
+                position: relative;
+            }
+    
+            .hero::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+    
+            .hero-content {
+                position: relative;
+                z-index: 1;
+            }
+    
+            .hero h2 {
+                font-size: clamp(2rem, 5vw, 3rem);
+                margin-bottom: 1rem;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+    
+            .hero p {
+                font-size: clamp(1rem, 2vw, 1.2rem);
+                max-width: 800px;
+                margin: 0 auto;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            }
+    
+            .sport-section {
+                padding: 4rem 0;
+            }
+    
+            .sport-section h3 {
+                font-size: clamp(1.5rem, 3vw, 2rem);
+                margin-bottom: 2rem;
+                color: var(--primary-color);
+                text-align: center;
+            }
+    
+            .sport-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 2rem;
+            }
+    
+            .sport-info {
+                flex: 1;
+            }
+    
+            .sport-image {
+                flex: 1;
+            }
+    
+            .sport-image img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+    
+            .format-grid,
+            .player-cards,
+            .news-grid,
+            .equipment-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+            }
+    
+            .format-card,
+            .player-card,
+            .news-card,
+            .equipment-item {
+                background-color: var(--white);
+                padding: 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+            }
+    
+            .format-card:hover,
+            .player-card:hover,
+            .news-card:hover,
+            .equipment-item:hover {
+                transform: translateY(-5px);
+            }
+    
+            .format-card h4,
+            .player-card h4,
+            .news-card h4 {
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+    
+            .player-card img,
+            .equipment-item img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 50%;
+                margin-bottom: 1rem;
+            }
+    
+            .news-card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 8px 8px 0 0;
+            }
+    
+            .read-more {
+                display: inline-block;
+                margin-top: 1rem;
+                color: var(--accent-color);
+                text-decoration: none;
+                font-weight: 500;
+                transition: var(--transition);
+            }
+    
+            .read-more:hover {
+                color: var(--primary-color);
+            }
+    
+            .bg-light {
+                background-color: #f4f4f4;
+            }
+    
+            .cricket-rules {
+                background-color: var(--white);
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+    
+            .cricket-rules h4 {
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+    
+            .cricket-rules ul {
+                list-style-type: disc;
+                padding-left: 1.5rem;
+            }
+    
+            .cricket-rules li {
+                margin-bottom: 0.5rem;
+            }
+    
+            footer {
+                background-color: var(--primary-color);
+                color: var(--white);
+                padding: 3rem 0 1rem;
+            }
+    
+            .footer-content {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+    
+            .footer-section h3 {
+                margin-bottom: 1rem;
+            }
+    
+            .footer-section ul {
+                list-style-type: none;
+            }
+    
+            .footer-section ul li {
+                margin-bottom: 0.5rem;
+            }
+    
+            .footer-section a {
+                color: var(--white);
+                text-decoration: none;
+                transition: var(--transition);
+            }
+    
+            .footer-section a:hover {
+                color: var(--secondary-color);
+            }
+    
+            .newsletter-form input {
+                width: 100%;
+                padding: 0.5rem;
+                margin-bottom: 0.5rem;
+                border: none;
+                border-radius: 4px;
+            }
+    
+            .newsletter-form button {
+                background-color: var(--accent-color);
+                color: var(--white);
+                border: none;
+                padding: 0.5rem 1rem;
+                cursor: pointer;
+                transition: var(--transition);
+                border-radius: 4px;
+            }
+    
+            .newsletter-form button:hover {
+                background-color: var(--secondary-color);
+            }
+    
+            .footer-bottom {
+                margin-top: 2rem;
+                text-align: center;
+                padding-top: 1rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+    
+            @media (max-width: 768px) {
+                .sport-content,
+                nav ul {
+                    flex-direction: column;
+                }
+    
+                nav ul li {
+                    margin: 10px 0;
+                }
+    
+                .hero h2 {
+                    font-size: clamp(1.5rem, 4vw, 2.5rem);
+                }
+    
+                .hero p {
+                    font-size: clamp(0.9rem, 2vw, 1.1rem);
+                }
+    
+                .format-grid,
+                .player-cards,
+                .news-grid,
+                .equipment-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+    
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    transition: none !important;
+                }
+            }
+    
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --background-color: #1a1a1a;
+                    --text-color: #f0f0f0;
+                    --light-text-color: #b0b0b0;
+                    --white: #2a2a2a;
+                }
+    
+                .bg-light {
+                    background-color: #2a2a2a;
+                }
+    
+                .format-card,
+                .player-card,
+                .news-card,
+                .equipment-item,
+                .cricket-rules {
+                    background-color: #333;
+                }
+            }
+        </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="Images/sports logo.png" alt="Sports Hub Logo" width="50" height="50">
+                <h1>Global Sports Hub</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cricket.html" class="active">Cricket</a></li>
+                    <li><a href="football.html">Football</a></li>
+                    <li><a href="badminton.html">Badminton</a></li>
+                    <li><a href="kabaddi.html">Kabaddi</a></li>
+                    <li><a href="news.html">Latest News</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="cricket-hero" class="hero">
+            <div class="container hero-content">
+                <h2>Cricket - The Gentleman's Game</h2>
+                <p>Discover the rich history, exciting matches, and legendary players that make cricket a global phenomenon.</p>
+            </div>
+        </section>
+
+        <section id="cricket-intro" class="sport-section">
+            <div class="container">
+                <div class="sport-content">
+                    <div class="sport-info">
+                        <h3>About Cricket</h3>
+                        <p>Cricket is a bat-and-ball game played between two teams of eleven players on a field at the center of which is a 22-yard (20-metre) pitch with a wicket at each end, each comprising two bails balanced on three stumps.</p>
+                        <p>The game has evolved from its origins in England over 500 years ago to a global sport with various formats, including Test matches, One Day Internationals (ODIs), and Twenty20 (T20) games.</p>
+                        <h4>Did You Know?</h4>
+                        <ul>
+                            <li>The longest Test match in history lasted 14 days!</li>
+                            <li>A cricket ball has between 65 and 78 stitches.</li>
+                            <li>The first international cricket match was played in 1844 between the USA and Canada.</li>
+                        </ul>
+                    </div>
+                    <div class="sport-image">
+                        <img src="Images/Action.jpg" alt="Cricket match in action" width="400" height="300">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cricket-formats" class="sport-section bg-light">
+            <div class="container">
+                <h3>Cricket Formats</h3>
+                <div class="format-grid">
+                    <div class="format-card">
+                        <h4>Test Cricket</h4>
+                        <p>The longest format of the game, played over five days between national teams. It is considered the ultimate test of a team's skill and endurance.</p>
+                    </div>
+                    <div class="format-card">
+                        <h4>One Day International (ODI)</h4>
+                        <p>A 50-over per side format, typically completed in a single day. It offers a balance between the traditional and modern aspects of the game.</p>
+                    </div>
+                    <div class="format-card">
+                        <h4>Twenty20 (T20)</h4>
+                        <p>The shortest format, with 20 overs per side, known for its fast-paced action and high-scoring matches. It has gained immense popularity worldwide.</p>
+                    </div>
+                    <div class="format-card">
+                        <h4>T10</h4>
+                        <p>An even shorter format with 10 overs per side, designed for quick, action-packed matches that last about 90 minutes.</p>
+                    </div>
+                
+                </div>
+            </div>
+        </section>
+
+        <section id="cricket-legends" class="sport-section">
+            <div class="container">
+                <h3>Cricket Legends</h3>
+                <div class="player-showcase">
+                    <div class="player-cards">
+                        <div class="player-card">
+                            <img src="Images/Virat Kohli.avif" alt="Virat Kohli" width="100" height="100">
+                            <h4>Virat Kohli</h4>
+                            <p>Known for his aggressive batting style and exceptional fitness.</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="Images/Steve Smith.png" alt="Steve Smith" width="100" height="100">
+                            <h4>Steve Smith</h4>
+                            <p>Renowned for his unorthodox batting technique and high test average.</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="Images/Kane Williamson.webp" alt="Kane Williamson" width="100" height="100">
+                            <h4>Kane Williamson</h4>
+                            <p>Admired for his calm demeanor and consistent performances.</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="Images/Joe Root.png" alt="Joe Root" width="100" height="100">
+                            <h4>Joe Root</h4>
+                            <p>England's backbone, known for his elegant batting and leadership.</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="Images/Jaspreet Bumrah.webp" alt="Jasprit Bumrah" width="100" height="100">
+                            <h4>Jasprit Bumrah</h4>
+                            <p>India's pace spearhead, known for his unique bowling action and yorkers.</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="Images/Ellyse Perry.webp" alt="Ellyse Perry" width="100" height="100">
+                            <h4>Ellyse Perry</h4>
+                            <p>Australian all-rounder, one of the best players in women's cricket.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cricket-rules" class="sport-section bg-light">
+            <div class="container">
+                <h3>Basic Cricket Rules</h3>
+                <div class="cricket-rules">
+                    <h4>Key Rules of Cricket</h4>
+                    <ul>
+                        <li>Two teams of 11 players each compete to score the most runs.</li>
+                        <li>The batting team tries to score runs, while the fielding team attempts to bowl them out.</li>
+                        <li>A match is divided into innings, where each team takes turns to bat.</li>
+                        <li>The bowler delivers the ball to the batsman, who tries to hit it and score runs.</li>
+                        <li>Runs are scored by running between the wickets or hitting the ball to the boundary.</li>
+                        <li>A batsman can be dismissed in various ways, including being caught, bowled, or run out.</li>
+                        <li>The team with the most runs at the end of the match wins.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="cricket-equipment" class="sport-section">
+            <div class="container">
+                <h3>Cricket Equipment</h3>
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <img src="Images/Bat.jpg" alt="Cricket Bat" width="80" height="80">
+                        <p>Cricket Bat</p>
+                    </div>
+                    <div class="equipment-item">
+                        <img src="Images/ball.webp" alt="Cricket Ball" width="80" height="80">
+                        <p>Cricket Ball</p>
+                    </div>
+                    <div class="equipment-item">
+                        <img src="Images/Stumps.jpg" alt="Stumps" width="80" height="80">
+                        <p>Stumps</p>
+                    </div>
+                    <div class="equipment-item">
+                        <img src="Images/Batting Pads.webp" alt="Batting Pads" width="80" height="80">
+                        <p>Batting Pads</p>
+                    </div>
+                    <div class="equipment-item">
+                        <img src="Images/helmet.jpg" alt="Helmet" width="80" height="80">
+                        <p>Helmet</p>
+                    </div>
+                    <div class="equipment-item">
+                        <img src="Images/Gloves.webp" alt="Gloves" width="80" height="80">
+                        <p>Gloves</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cricket-news" class="sport-section bg-light">
+            <div class="container">
+                <h3>Latest Cricket News</h3>
+                <div class="news-grid">
+                    <article class="news-card">
+                        <img src="Images/news1.jpg" alt="ICC Tournament News" width="300" height="200">
+                        <h4>ICC Announces New Tournament Format</h4>
+                        <p>The International Cricket Council has revealed plans for a revolutionary new tournament structure...</p>
+                        <a href="https://www.icc-cricket.com/news/everything-you-need-to-know-about-the-icc-men-s-t20-world-cup-2024" class="read-more">Read More</a>
+                    </article>
+                    <article class="news-card">
+                        <img src="Images/news2.avif" alt="Player Retirement News" width="300" height="200">
+                        <h4>Veteran Player Announces Retirement</h4>
+                        <p>After a illustrious career spanning two decades, a beloved cricket star has decided to hang up his boots...</p>
+                        <a href="https://www.business-standard.com/sports/other-sports-news/veteran-french-tennis-player-richard-gasquet-to-retire-after-french-open-124101000817_1.html" class="read-more">Read More</a>
+                    </article>
+                    <article class="news-card">
+                        <img src="" alt="T20 League Update" width="300" height="200">
+                        <h4>Exciting Finale in T20 League</h4>
+                        <p>The latest season of the popular T20 league concluded with a thrilling final match between...</p>
+                        <a href="Images/news3.jpg" class="read-more">Read More</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Global Sports Hub is your one-stop destination for all things sports. We bring you the latest news, player profiles, and in-depth analysis of various sports from around the world.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="cricket.html">Cricket</a></li>
+                        <li><a href="football.html">Football</a></li>
+                        <li><a href="badminton.html">Badminton</a></li>
+                        <li><a href="kabaddi.html">Kabaddi</a></li>
+                        <li><a href="news.html">Latest News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <ul class="social-links">
+                        <li><a href="#" aria-label="Facebook">Facebook</a></li>
+                        <li><a href="#" aria-label="Twitter">Twitter</a></li>
+                        <li><a href="#" aria-label="Instagram">Instagram</a></li>
+                        <li><a href="#" aria-label="YouTube">YouTube</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Global Sports Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

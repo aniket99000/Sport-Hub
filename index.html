@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Sports Hub - Your Gateway to Athletic Excellence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #ecf0f1;
+            --text-color: #333;
+            --header-footer-bg: #34495e;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--header-footer-bg);
+            color: white;
+            padding: 20px 0;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(360deg);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            transform: scaleX(1);
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        #hero {
+            background-image: url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 0;
+            position: relative;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        #hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .sport-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .sport-section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .sport-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .sport-info {
+            flex: 1;
+            min-width: 300px;
+            margin-right: 40px;
+        }
+
+        .sport-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .sport-info ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .sport-info ul li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .sport-info ul li::before {
+            content: '•';
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: -20px;
+        }
+
+        .player-showcase {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .player-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+
+        .player-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .player-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .player-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .player-card h4 {
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .player-card p {
+            padding: 15px;
+        }
+        .read-more {
+            display: inline-block;
+            margin: 0 20px 20px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--header-footer-bg);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin-bottom: 30px;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .sport-content {
+                flex-direction: column;
+            }
+
+            .sport-info {
+                margin-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-section {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">  
+                <img src="Images/sports logo.png" alt="Sports Hub Logo" width="50" height="50">
+                <h1>Global Sports Hub</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="cricket.html">Cricket</a></li>
+                    <li><a href="football.html">Football</a></li>
+                    <li><a href="#badminton">Badminton</a></li>
+                    <li><a href="#kabaddi">Kabaddi</a></li>
+                    <li><a href="#news">Latest News</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h2>Discover the World of Sports</h2>
+                <p>Dive into the excitement, strategy, and passion behind the world's most beloved games.</p>
+                <a href="#cricket" class="cta-button">Explore Now</a>
+            </div>
+        </section>
+
+        <section id="cricket" class="sport-section">
+            <div class="container">
+                <h2>Cricket - The Gentleman's Game</h2>
+                <div class="sport-content">
+                    <div class="sport-info">
+                        <p>Cricket, often called the gentleman's game, is a bat-and-ball sport that has captured hearts across continents. From the intense five-day Test matches to the fast-paced T20 format, cricket offers a variety of experiences for both players and spectators.</p>
+                        <br>
+                        <h3>Did You Know?</h3>
+                        <ul>
+                            <li>The longest Test match in history lasted 14 days!</li>
+                            <li>A cricket ball has between 65 and 78 stitches.</li>
+                            <li>The first international cricket match was played in 1844 between the USA and Canada.</li>
+                            <li>Cricket's Origins: The game of cricket dates back to the 16th century, with its roots in England. It was originally a children's game before gaining popularity among adults.</li>
+                            <li>The Ashes Rivalry: One of the most famous cricket rivalries is between England and Australia, known as The Ashes. It started in 1882 and is played to this day.</li>
+                            <li>Sachin Tendulkar’s Records: Sachin Tendulkar, widely regarded as one of the greatest cricketers of all time, holds the record for the most runs in international cricket, amassing over 34,000 runs.</li>
+                            <li>Cricket World Cup: The Cricket World Cup, held every four years, is one of the most-watched sporting events globally, attracting millions of viewers from across the world.</li>
+                            <li>Unusual Cricket Laws: The Duckworth-Lewis-Stern method is used to calculate the target score in rain-affected matches. It’s one of the most complex rules in sports, combining mathematics and game dynamics.</li>
+                            <li>Fastest Ball Ever Bowled: The fastest recorded delivery in cricket was bowled by Pakistan's Shoaib Akhtar, who clocked in at an astonishing 161.3 km/h (100.23 mph) during the 2003 World Cup.</li>
+                        </ul>
+                    </div>
+                    <div class="player-showcase">
+                        <h3>Cricket Legends</h3>
+                        <div class="player-cards">
+                            <div class="player-card">
+                                <img src="Images/Virat Kohli.avif" alt="Virat Kohli">
+                                <h4>Virat Kohli</h4>
+                                <p>Known for his aggressive batting style and exceptional fitness.</p>
+                            </div>
+                            <div class="player-card">
+                                <img  src="Images/Steve Smith.png" alt="Steve Smith">
+                                <h4>Steve Smith</h4>
+                                <p>Renowned for his unorthodox batting technique and high test average.</p>
+                            </div>
+                            <div class="player-card">
+                                <img src="Images/Kane Williamson.webp" alt="Kane Williamson">
+                                <h4>Kane Williamson</h4>
+                                <p>Admired for his calm demeanor and consistent performances.</p>
+                            </div>
+                            <div class="player-card">
+                                <img src="Images/Joe Root.png" alt="Joe Root">
+                                <h4>Joe Root</h4>
+                                <p>England's backbone, known for his elegant batting and leadership.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="football" class="sport-section">
+            <div class="container">
+                <h2>Football - The Beautiful Game</h2>
+                <div class="sport-content">
+                    <div class="sport-info">
+                        <p>Football, or soccer as it's known in some parts of the world, is more than just a sport—it's a global phenomenon. With its simple rules and the passion it ignites, football has become the world's most popular sport, played and watched by billions.</p>
+                        <br>
+                        <h3>Did You Know?</h3>
+                        <ul>
+                            <li>The first World Cup was held in 1930 and was won by Uruguay.</li>
+                            <li>A professional footballer runs an average of 8-13 km per match.</li>
+                            <li>The fastest goal in football history was scored in just 2.1 seconds!</li>
+                            <li>Origins of Football: The earliest form of football dates back over 2,000 years to ancient civilizations such as China, Greece, and Rome, but the modern game as we know it was codified in England in the 19th century.</li>
+                            <li>The Biggest Event: The FIFA World Cup is the most-watched sporting event in the world, with over 3.5 billion people tuning in during the 2018 tournament. It’s held every four years, with nations competing for global supremacy.</li>
+                            <li>Most Goals in a Single Match: The record for the most goals scored in a professional match is 149, set during a 2002 game between AS Adema and SO l'Emyrne in Madagascar. The high score was the result of protest goals due to a refereeing decision.</li>
+                            <li>Pele’s Unbeatable Legacy: Brazilian legend Pele is one of football's most iconic figures. He is the only player to have won the FIFA World Cup three times, in 1958, 1962, and 1970.</li>
+                            <li>The World’s Most Expensive Player: Neymar’s transfer from Barcelona to Paris Saint-Germain in 2017 remains the most expensive transfer in football history, costing PSG a staggering €222 million ($263 million).</li>
+                            <li>The Birth of Modern Clubs: Sheffield F.C., founded in 1857 in England, is recognized by FIFA as the world’s oldest football club.</li>
+                        </ul>
+                    </div>
+                    <div class="player-showcase">
+                        <h3>Football Icons</h3>
+                        <div class="player-cards">
+                            <div class="player-card">
+                                <img src="Images/Lionel Messi.jpg" alt="Lionel Messi">
+                                <h4>Lionel Messi</h4>
+                                <p>Argentinian maestro known for his dribbling skills and goal-scoring prowess.</p>
+                            </div>
+                            <div class="player-card">
+                                <img src="Images/Cristiano Ronaldo.png" alt="Cristiano Ronaldo">
+                                <h4>Cristiano Ronaldo</h4>
+                                <p>Portuguese powerhouse famous for his athleticism and goal-scoring ability.</p>
+                            </div>
+                            <div class="player-card">
+                                <img src="Images/Neymar Jr.jpg" alt="Neymar Jr">
+                                <h4>Neymar Jr</h4>
+                                <p>Brazilian sensation known for his flair and creative playing style.</p>
+                            </div>
+                            <div class="player-card">
+                                <img src="Images/Kylian Mbappé.png" alt="Kylian Mbappé">
+                                <h4>Kylian Mbappé</h4>
+                                <p>French prodigy recognized for his explosive speed and finishing.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="badminton" class="sport-section">
+            <div class="container">
+                <h2>Badminton - The High-Speed Racquet Sport</h2>
+                <div class="sport-content">
+                    <div class="sport-info">
+                        <p>Badminton is a fast-paced racquet sport that demands quick reflexes, agility, and stamina. Despite its delicate appearance, the shuttlecock can reach speeds of over 300 mph, making badminton one of the fastest sports in the world.</p>
+                        <h3>Did You Know?</h3>
+                        <ul>
+                            <li>The fastest recorded badminton hit was 493 km/h (306 mph).</li>
+                            <li>Badminton became an Olympic sport in 1992.</li>
+                            <li>A badminton match can consist of up to 100 rallies.</li>
+                            <li>Thomas and Uber Cup: The two most prestigious team tournaments in badminton are the Thomas Cup (for men) and the Uber Cup (for women). These tournaments are held every two years and feature teams from all over the world</li>
+                            <li>Most Dominant Country: China has historically been the most dominant nation in badminton, winning numerous Olympic gold medals and world championships. However, countries like Indonesia, Malaysia, and Denmark are also strong contenders in the sport.</li>
+                            <li>Longest Match Ever Played: The longest badminton match lasted 124 minutes, played during the 2016 Yonex All England Open between Japan’s Akane Yamaguchi and Thailand’s Ratchanok Intanon.</li>
+                            <li>Olympic Champions: Lin Dan of China is widely considered one of the greatest badminton players of all time, winning two Olympic gold medals and five World Championships in his career.</li>
+                            <li>Number of Feathers: Each shuttlecock used in professional badminton is made from 16 feathers, typically taken from the left wing of a goose. Synthetic shuttlecocks are also used for recreational play, but feathered ones are standard in high-level competition.</li>
+                        </ul>
+                    </div>
+                    <div class="player-showcase">
+                        <h3>Badminton Stars</h3>
+                        <div class="player-cards">
+                            <div class="player-card">
+                                <img src="Images/P V Sindhu.jpg" alt="PV Sindhu">
+                                <h4>PV Sindhu</h4>
+                                <p>Indian powerhouse and Olympic medalist known for her aggressive play.</p>
+                            </div>
+                            <div class="player-card">
+                                <img src="Images/Carolina Marin.avif" alt="Carolina Marin">
+                                <h4>Carolina Marin</h4>
+                                <p>Spanish left-handed player famous for her speed and on-court aggression.</p>
+                            </div>
+                            <div class="player-card">
+                                <img src="Images/Kento Momota.jpg" alt="Kento Momota">
+                                <h4>Kento Momota</h4>
+                                <p>Japanese player renowned for his all-round skills and mental toughness.</p>
+                            </div>
+                            <div class="player-card">
+                                <img src="Images/Viktor Axelsen.jpg" alt="Viktor Axelsen">
+                                <h4>Viktor Axelsen</h4>
+                                <p>Danish player known for his height advantage and powerful smashes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kabaddi" class="sport-section">
+            <div class="container">
+                <h2>Kabaddi - The Game of Raid and Defense</h2>
+                <div class="sport-content">
+                    <div class="sport-info">
+                        <p>Kabaddi is a unique contact sport that originated in ancient India. It combines elements of wrestling and tag, requiring both physical strength and mental agility. The sport has gained international recognition and is now played in many countries around the world.</p>
+                        <h3>Did You Know?</h3>
+                        <ul>
+                            <li>The word "Kabaddi" is derived from the Tamil word "kai-pidi" which means "to hold hands".</li>
+                            <li>A Kabaddi match lasts for 40 minutes with a 5-minute break in between.</li>
+                            <li>Kabaddi made its Asian Games debut in 1990.</li>
+                            <li>Types of Kabaddi: There are different forms of Kabaddi, such as Circle Kabaddi (played on a circular field) and Standard Kabaddi (played on a rectangular court). The standard version is more popular in international tournaments.</li>
+                            <li>Ancient Roots: Some scholars believe that Kabaddi was played by ancient warriors to develop self-defense skills and physical fitness.</li>
+                            <li>Popular Regions: While Kabaddi is extremely popular in India, it is also widely played in countries like Iran, Bangladesh, Pakistan, South Korea, and Japan.</li>
+                            <li>Women’s Kabaddi: Women’s Kabaddi has gained immense popularity, with women's teams competing at major tournaments, including the Asian Games and the Pro Kabaddi League.</li>
+                        </ul>
+                    </div>
+                    <div class="player-showcase">
+                        <h3>Kabaddi Champions</h3>
+                        <div class="player-cards">
+                            <div class="player-card">
+                                <img src="Images/Pradeep Narwal.jpg" alt="Pardeep Narwal">
+                                <h4>Pardeep Narwal</h4>
+                                <p>Known as "Dubki King" for his signature move in raids.</p>
+                            </div>
+                            <div class="player-card">
+                                <img src="Images/Rahul Chaudhari.avif" alt="Rahul Chaudhari">
+                                <h4>Rahul Chaudhari</h4>
+                                <p>Called "Showman" for his flamboyant style of play.</p>
+                            </div>
+                            <div class="player-card">
+                                <img src="Images/Deepak Hooda.jpg" alt="Deepak Niwas Hooda">
+                                <h4>Deepak Niwas Hooda</h4>
+                                <p>All-rounder known for his versatility in both offense and defense.</p>
+                            </div>
+                            <div class="player-card">
+                                <img src="Images/Ajay Thakur.jpg" alt="Ajay Thakur">
+                                <h4>Ajay Thakur</h4>
+                                <p>Captain of the Indian national team and prolific scorer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Global Sports Hub is your one-stop destination for all things sports. We bring you the latest news, player profiles, and in-depth analysis of various sports from around the world.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#cricket">Cricket</a></li>
+                        <li><a href="#football">Football</a></li>
+                        <li><a href="#badminton">Badminton</a></li>
+                        <li><a href="#kabaddi">Kabaddi</a></li>
+                        <li><a href="#news">Latest News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <ul class="social-links">
+                        <li><a href="#" aria-label="Facebook">Facebook</a></li>
+                        <li><a href="#" aria-label="Twitter">Twitter</a></li>
+                        <li><a href="#" aria-label="Instagram">Instagram</a></li>
+                        <li><a href="#" aria-label="YouTube">YouTube</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Global Sports Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
